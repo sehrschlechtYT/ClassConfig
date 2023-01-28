@@ -29,5 +29,5 @@ jobs:
         if: always()
         with:
           name: junit-test-results
-          retention_days: 1
+          retention-days: 1
           path: 'target/surefire-reports/*.xml'
