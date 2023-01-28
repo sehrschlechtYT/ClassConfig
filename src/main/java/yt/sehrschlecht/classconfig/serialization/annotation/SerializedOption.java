@@ -1,7 +1,7 @@
-package yt.sehrschlecht.javaconfig.serialization.annotation;
+package yt.sehrschlecht.classconfig.serialization.annotation;
 
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
-import yt.sehrschlecht.javaconfig.serialization.DefaultSerializationAdapter;
+import yt.sehrschlecht.classconfig.serialization.DefaultSerializationAdapter;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

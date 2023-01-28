@@ -1,5 +1,5 @@
-import yt.sehrschlecht.javaconfig.serialization.annotation.SerializableClass;
-import yt.sehrschlecht.javaconfig.serialization.annotation.SerializeAllFields;
+import yt.sehrschlecht.classconfig.serialization.annotation.SerializableClass;
+import yt.sehrschlecht.classconfig.serialization.annotation.SerializeAllFields;
 
 /**
  * @author sehrschlechtYT | https://github.com/sehrschlechtYT

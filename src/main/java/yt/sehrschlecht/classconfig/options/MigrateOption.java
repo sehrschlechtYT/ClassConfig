@@ -1,4 +1,4 @@
-package yt.sehrschlecht.javaconfig.options;
+package yt.sehrschlecht.classconfig.options;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

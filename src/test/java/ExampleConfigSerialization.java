@@ -1,7 +1,7 @@
 import org.jetbrains.annotations.NotNull;
-import yt.sehrschlecht.javaconfig.SimpleJavaConfig;
-import yt.sehrschlecht.javaconfig.options.ConfigOption;
-import yt.sehrschlecht.javaconfig.serialization.annotation.SerializedOption;
+import yt.sehrschlecht.classconfig.SimpleClassConfig;
+import yt.sehrschlecht.classconfig.options.ConfigOption;
+import yt.sehrschlecht.classconfig.serialization.annotation.SerializedOption;
 
 import java.io.File;
 
@@ -9,7 +9,7 @@ import java.io.File;
  * @author sehrschlechtYT | https://github.com/sehrschlechtYT
  * @since 1.0
  */
-public class ExampleConfigSerialization extends SimpleJavaConfig {
+public class ExampleConfigSerialization extends SimpleClassConfig {
     @ConfigOption(type = Customer.class)
     @SerializedOption
     public Customer customer = new Customer("John Doe", "123 Main Street", 69);

@@ -1,7 +1,7 @@
 import dev.dejvokep.boostedyaml.YamlDocument;
-import yt.sehrschlecht.javaconfig.options.ConfigOption;
-import yt.sehrschlecht.javaconfig.options.MigrateOption;
-import yt.sehrschlecht.javaconfig.SimpleJavaConfig;
+import yt.sehrschlecht.classconfig.options.ConfigOption;
+import yt.sehrschlecht.classconfig.options.MigrateOption;
+import yt.sehrschlecht.classconfig.SimpleClassConfig;
 
 import java.io.File;
 
@@ -9,7 +9,7 @@ import java.io.File;
  * @author sehrschlechtYT | https://github.com/sehrschlechtYT
  * @since 1.0
  */
-public class ExampleConfigSimple extends SimpleJavaConfig {
+public class ExampleConfigSimple extends SimpleClassConfig {
 
     @ConfigOption(type = String.class, comments = "This is a comment!")
     public String helloWorld = "Hello World!";

@@ -1,4 +1,4 @@
-package yt.sehrschlecht.javaconfig;
+package yt.sehrschlecht.classconfig;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
 import dev.dejvokep.boostedyaml.block.Block;
@@ -9,9 +9,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import yt.sehrschlecht.javaconfig.options.ConfigOption;
-import yt.sehrschlecht.javaconfig.options.MigrateOption;
-import yt.sehrschlecht.javaconfig.serialization.annotation.SerializedOption;
+import yt.sehrschlecht.classconfig.options.ConfigOption;
+import yt.sehrschlecht.classconfig.options.MigrateOption;
+import yt.sehrschlecht.classconfig.serialization.annotation.SerializedOption;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,11 +20,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * A simple java config can be used to read data from a yaml config file.
+ * A simple class config can be used to read data from a yaml config file.
  * @author sehrschlechtYT | https://github.com/sehrschlechtYT
  * @since 1.0
  */
-public abstract class SimpleJavaConfig {
+public abstract class SimpleClassConfig {
     protected final File file;
     protected YamlDocument document;
     protected Map<String, Object> defaultValues;
@@ -36,7 +36,7 @@ public abstract class SimpleJavaConfig {
      * Creates a new instance of the config. Must be called via super() in the constructor of the extending class.
      * @param file The file to load the config from. Must be a yaml (.yml/.yaml) file.
      */
-    protected SimpleJavaConfig(@NotNull File file) {
+    protected SimpleClassConfig(@NotNull File file) {
         Objects.requireNonNull(file, "File must not be null!");
         this.file = file;
         this.logger = LoggerFactory.getLogger(getClass());

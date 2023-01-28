@@ -1,4 +1,4 @@
-package yt.sehrschlecht.javaconfig.serialization;
+package yt.sehrschlecht.classconfig.serialization;
 
 import dev.dejvokep.boostedyaml.block.Block;
 import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
@@ -6,9 +6,9 @@ import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import yt.sehrschlecht.javaconfig.serialization.annotation.SerializableClass;
-import yt.sehrschlecht.javaconfig.serialization.annotation.Serialize;
-import yt.sehrschlecht.javaconfig.serialization.annotation.SerializeAllFields;
+import yt.sehrschlecht.classconfig.serialization.annotation.SerializableClass;
+import yt.sehrschlecht.classconfig.serialization.annotation.Serialize;
+import yt.sehrschlecht.classconfig.serialization.annotation.SerializeAllFields;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;

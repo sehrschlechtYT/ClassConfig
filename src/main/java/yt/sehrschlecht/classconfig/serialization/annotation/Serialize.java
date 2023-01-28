@@ -1,4 +1,4 @@
-package yt.sehrschlecht.javaconfig.serialization.annotation;
+package yt.sehrschlecht.classconfig.serialization.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
