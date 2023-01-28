@@ -33,4 +33,4 @@ public class MainClass {
 
 ## Documentation
 
-A full documentation is currently being worked on.
+A full documentation is currently being worked on. [Javadocs](https://sehrschlechtyt.github.io/ClassConfig/javadocs/) are available in the meantime.
