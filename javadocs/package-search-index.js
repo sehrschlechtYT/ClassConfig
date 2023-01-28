@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"yt.sehrschlecht.classconfig"},{"l":"yt.sehrschlecht.classconfig.options"},{"l":"yt.sehrschlecht.classconfig.serialization"},{"l":"yt.sehrschlecht.classconfig.serialization.annotation"}];updateSearchResults();
