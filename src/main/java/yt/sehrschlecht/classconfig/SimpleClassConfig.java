@@ -100,7 +100,9 @@ public abstract class SimpleClassConfig {
 
     @SuppressWarnings("unchecked")
     @ApiStatus.Internal
-    private <C> void registerSerializationType(Field field, SerializedOption serializedOption) {
+    private <C> void registerSerializationType(@NotNull Field field, @NotNull SerializedOption serializedOption) {
+        Objects.requireNonNull(field, "Field must not be null!");
+        Objects.requireNonNull(serializedOption, "SerializedOption must not be null!");
         try {
             Class<? extends TypeAdapter<C>> adapterClass = (Class<? extends TypeAdapter<C>>) serializedOption.adapter();
             Class<C> typeClass = (Class<C>) field.getType();

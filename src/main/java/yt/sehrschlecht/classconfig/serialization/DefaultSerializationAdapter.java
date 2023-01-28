@@ -121,6 +121,6 @@ public class DefaultSerializationAdapter<T> implements TypeAdapter<T> {
                 logger.error("Failed to find constructor for class {} with arguments {}!", typeClass.getSimpleName(), constructorArgClasses.stream().map(Class::getSimpleName).collect(Collectors.joining(", ")));
             }
         }
-        return null;
+        throw new IllegalArgumentException("No valid constructor type was specified for class " + typeClass.getSimpleName() + "!");
     }
 }
