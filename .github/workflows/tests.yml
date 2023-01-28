@@ -24,10 +24,10 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Run tests with Maven
         run: mvn -B test --file pom.xml
-      - name: Publish test report
-        uses: mikepenz/action-junit-report@v3
+      - name: Upload test report
+        uses: actions/upload-artifact@v3
         if: always()
         with:
-          report_paths: 'target/surefire-reports/*.xml'
-          name: 'Test Reports'
+          name: junit-test-results
           retention_days: 1
+          path: 'target/surefire-reports/*.xml'
