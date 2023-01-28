@@ -1,5 +1,8 @@
 # ClassConfig
-![](https://github.com/sehrschlechtYT/ClassConfig/workflows/tests/badge.svg)
+![](https://github.com/sehrschlechtYT/ClassConfig/actions/workflows/tests.yml/badge.svg)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/sehrschlechtYT/KeepItems/graphs/commit-activity)
+[![](https://dcbadge.vercel.app/api/server/crHgFwH2Gt)](https://discord.gg/crHgFwH2Gt)
+![](https://dcbadge.vercel.app/api/shield/450685365876162573)
 
 ClassConfig allows the representation of yaml configuration files as classes.  
 Config options can be easily accessed and modified.
