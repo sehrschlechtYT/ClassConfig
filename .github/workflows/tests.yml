@@ -29,3 +29,5 @@ jobs:
         if: always()
         with:
           report_paths: 'target/surefire-reports/*.xml'
+          name: 'Test Reports'
+          retention_days: 1
