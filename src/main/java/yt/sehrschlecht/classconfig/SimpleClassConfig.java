@@ -88,30 +88,29 @@ public abstract class SimpleClassConfig {
     /**
      * Registers the serializers for all {@link SerializedOption}s.
      */
-    protected void registerSerializers() {
+    @ApiStatus.Internal
+    private void registerSerializers() {
         getOptions().forEach((field, option) -> {
             if(field.isAnnotationPresent(SerializedOption.class)) {
                 SerializedOption serializedOption = field.getAnnotation(SerializedOption.class);
-                //noinspection rawtypes
-                Class<? extends TypeAdapter> adapterClass = serializedOption.adapter();
-                try {
-                    TypeAdapter<?> adapter = adapterClass.getConstructor(Class.class).newInstance(field.getType());
-                    StandardSerializer standardSerializer = StandardSerializer.getDefault();
-                    //ToDo this is a workaround
-                    Field adapters = standardSerializer.getClass().getDeclaredField("adapters");
-                    adapters.setAccessible(true);
-                    //noinspection unchecked
-                    ((Map<Class<?>, TypeAdapter<?>>) adapters.get(standardSerializer)).put(field.getType(), adapter);
-
-                    Field aliases = standardSerializer.getClass().getDeclaredField("aliases");
-                    aliases.setAccessible(true);
-                    //noinspection unchecked
-                    ((Map<String, Class<?>>) aliases.get(standardSerializer)).put(field.getType().getCanonicalName(), field.getType());
-                } catch (Exception e) {
-                    logger.error("Failed to create adapter for field {}!", field.getName(), e);
-                }
+                registerSerializationType(field, serializedOption);
             }
         });
+    }
+
+    @SuppressWarnings("unchecked")
+    @ApiStatus.Internal
+    private <C> void registerSerializationType(Field field, SerializedOption serializedOption) {
+        try {
+            Class<? extends TypeAdapter<C>> adapterClass = (Class<? extends TypeAdapter<C>>) serializedOption.adapter();
+            Class<C> typeClass = (Class<C>) field.getType();
+
+            TypeAdapter<C> adapter = adapterClass.getConstructor(Class.class).newInstance(typeClass);
+            StandardSerializer standardSerializer = StandardSerializer.getDefault();
+            standardSerializer.register(typeClass, adapter);
+        } catch (Exception e) {
+            logger.error("Failed to create adapter for type {}!", field.getType().getSimpleName(), e);
+        }
     }
 
     /**
