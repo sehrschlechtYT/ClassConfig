@@ -29,6 +29,7 @@ public abstract class SimpleClassConfig {
     protected YamlDocument document;
     protected Map<String, Object> defaultValues;
     protected final Logger logger;
+
     private boolean initializedDefaultValues = false;
     private boolean hasInitialized = false;
 
@@ -105,9 +106,15 @@ public abstract class SimpleClassConfig {
         Objects.requireNonNull(serializedOption, "SerializedOption must not be null!");
         try {
             Class<? extends TypeAdapter<C>> adapterClass = (Class<? extends TypeAdapter<C>>) serializedOption.adapter(); //ToDo constructor may be empty if type specified in adapter
-            Class<C> typeClass = (Class<C>) field.getType();
 
-            TypeAdapter<C> adapter = adapterClass.getConstructor(Class.class).newInstance(typeClass);
+            Class<C> typeClass = (Class<C>) field.getType();
+            TypeAdapter<C> adapter;
+            try {
+                adapter = adapterClass.getConstructor(Class.class).newInstance(typeClass);
+            } catch (NoSuchMethodException e) {
+                adapter = adapterClass.getConstructor().newInstance();
+            }
+
             StandardSerializer standardSerializer = StandardSerializer.getDefault();
             standardSerializer.register(typeClass, adapter);
         } catch (Exception e) {

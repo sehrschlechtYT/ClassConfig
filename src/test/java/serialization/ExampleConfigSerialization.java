@@ -1,8 +1,11 @@
+package serialization;
+
 import org.jetbrains.annotations.NotNull;
 import yt.sehrschlecht.classconfig.SimpleClassConfig;
 import yt.sehrschlecht.classconfig.options.ConfigOption;
 import yt.sehrschlecht.classconfig.serialization.annotation.SerializedOption;
 
+import java.awt.*;
 import java.io.File;
 
 /**
@@ -37,13 +40,22 @@ public class ExampleConfigSerialization extends SimpleClassConfig {
             new char[]{'a', 'b', 'c', 'd', 'e'}
     );
 
+    @ConfigOption(type = House.class)
+    @SerializedOption(adapter = HouseSerializer.class)
+    public House house = new House(
+            new Address("123 Main Street", "New York", "NY"),
+            Color.RED,
+            true,
+            5
+    );
+
 
     /**
      * Creates a new instance of the config. Must be called via super() in the constructor of the extending class.
      *
      * @param file The file to load the config from. Must be a yaml (.yml/.yaml) file.
      */
-    protected ExampleConfigSerialization(@NotNull File file) {
+    public ExampleConfigSerialization(@NotNull File file) {
         super(file);
     }
 }

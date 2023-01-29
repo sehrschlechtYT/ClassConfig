@@ -1,3 +1,5 @@
+package serialization;
+
 import yt.sehrschlecht.classconfig.serialization.annotation.SerializableClass;
 import yt.sehrschlecht.classconfig.serialization.annotation.SerializeAllFields;
 

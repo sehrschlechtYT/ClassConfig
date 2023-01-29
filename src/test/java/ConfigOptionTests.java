@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Test;
+import serialization.ExampleConfigSerialization;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,7 +43,7 @@ public class ConfigOptionTests {
         assertEquals("123 Main Street", config.customer.getAddress());
         assertEquals(69, config.customer.getAge());
 
-        /*assertEquals(new ManyFields(
+        /*assertEquals(new serialization.ManyFields(
                 1,
                 "Hello World!",
                 true,
@@ -143,12 +144,21 @@ public class ConfigOptionTests {
                       - 4
                       - 5
                       aByte: 5
-                      ==: ManyFields
+                      ==: serialization.ManyFields
+                    house:
+                      rooms: 5
+                      address:
+                        city: New York
+                        street: 123 Main Street
+                        state: NY
+                      color: 255,0,0
+                      garage: true
+                      ==: serialization.House
                     customer:
                       address: 123 Main Street
                       name: John Doe
                       age: 69
-                      ==: Customer""", fileContent);
+                      ==: serialization.Customer""", fileContent);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
