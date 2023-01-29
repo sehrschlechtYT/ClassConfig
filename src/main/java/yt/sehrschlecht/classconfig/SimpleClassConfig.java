@@ -17,7 +17,6 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * A simple class config can be used to read data from a yaml config file.
@@ -138,7 +137,6 @@ public abstract class SimpleClassConfig {
             String key = getKey(field, option);
             defaultValues.put(key, getValue(field));
         });
-        logger.debug("Default values: {}", defaultValues.entrySet().stream().map(entry -> entry.getKey() + ": " + entry.getValue()).collect(Collectors.joining(", ")));
         return defaultValues;
     }
 
@@ -262,8 +260,6 @@ public abstract class SimpleClassConfig {
     protected @Nullable Object getValue(@NotNull Field field) {
         Objects.requireNonNull(field, "Field must not be null!");
         try {
-            logger.debug("Getting value of field {}", field.getName());
-            logger.debug("Field value: {}", field.get(this));
             return field.get(this);
         } catch (IllegalAccessException e) {
             logger.error("Failed to get value of field {}", field.getName(), e);
