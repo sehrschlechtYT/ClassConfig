@@ -19,7 +19,7 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 /**
- * A simple class config can be used to read data from a yaml config file.
+ * A simple class config can be used to write/read data to/from a yaml config file.
  * @author sehrschlechtYT | https://github.com/sehrschlechtYT
  * @since 1.0
  */
@@ -315,5 +315,22 @@ public abstract class SimpleClassConfig {
                 logger.error("Failed to update field", e);
             }
         }));
+    }
+
+    /**
+     * Saves the values of all fields to the config file.
+     */
+    public void save() {
+        getOptions().forEach((field, option) -> {
+            String key = getKey(field, option);
+            Object value = getValue(field);
+            if(value == null) return;
+            document.set(key, value);
+        });
+        try {
+            document.save();
+        } catch (IOException e) {
+            logger.error("Failed to save config", e);
+        }
     }
 }
