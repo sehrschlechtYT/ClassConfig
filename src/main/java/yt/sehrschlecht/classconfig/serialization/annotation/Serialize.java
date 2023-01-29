@@ -16,5 +16,5 @@ public @interface Serialize {
     /**
      * @return The key of the serialized field. If empty, the field name will be used.
      */
-    public String key() default "";
+    String key() default "";
 }

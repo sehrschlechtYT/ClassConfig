@@ -104,7 +104,7 @@ public abstract class SimpleClassConfig {
         Objects.requireNonNull(field, "Field must not be null!");
         Objects.requireNonNull(serializedOption, "SerializedOption must not be null!");
         try {
-            Class<? extends TypeAdapter<C>> adapterClass = (Class<? extends TypeAdapter<C>>) serializedOption.adapter();
+            Class<? extends TypeAdapter<C>> adapterClass = (Class<? extends TypeAdapter<C>>) serializedOption.adapter(); //ToDo constructor may be empty if type specified in adapter
             Class<C> typeClass = (Class<C>) field.getType();
 
             TypeAdapter<C> adapter = adapterClass.getConstructor(Class.class).newInstance(typeClass);
