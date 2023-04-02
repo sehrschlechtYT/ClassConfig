@@ -296,7 +296,13 @@ public abstract class SimpleClassConfig {
             String key = getKey(field, option);
             Block<?> block = document.getBlock(key);
             block.removeComments();
-            block.setComments(List.of(option.comments()));
+            List<String> comments = Arrays.stream(option.comments()).map(comment -> {
+                if (!comment.startsWith(" ")) {
+                    comment = " " + comment; // add leading space if missing
+                }
+                return comment;
+            }).toList();
+            block.setComments(comments);
         }));
     }
 
