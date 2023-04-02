@@ -31,15 +31,21 @@ public abstract class SimpleClassConfig {
 
     private boolean initializedDefaultValues = false;
     private boolean hasInitialized = false;
+    private final boolean isKotlin;
 
     /**
      * Creates a new instance of the config. Must be called via super() in the constructor of the extending class.
      * @param file The file to load the config from. Must be a yaml (.yml/.yaml) file.
      */
     protected SimpleClassConfig(@NotNull File file) {
+        // kotlin.Metadata is the annotation that is added to all kotlin classes
+        isKotlin = Arrays.stream(this.getClass().getAnnotations()).anyMatch(annotation -> annotation.annotationType().getName().equalsIgnoreCase("kotlin.Metadata"));
         Objects.requireNonNull(file, "File must not be null!");
         this.file = file;
         this.logger = LoggerFactory.getLogger(getClass());
+        if (isKotlin) {
+            logger.warn("Warning: You are using a Kotlin class as a config. Support for Kotlin is experimental and may not work as expected!");
+        }
     }
 
     /**
@@ -184,7 +190,7 @@ public abstract class SimpleClassConfig {
      */
     protected @NotNull Map<Field, ConfigOption> getOptions() {
         Map<Field, ConfigOption> options = new HashMap<>();
-        for (Field field : getClass().getFields()) {
+        for (Field field : getFields()) {
             if(field.isAnnotationPresent(ConfigOption.class)) {
                 ConfigOption option = field.getAnnotation(ConfigOption.class);
                 if(!verifyOption(field, option)) continue;
@@ -192,6 +198,20 @@ public abstract class SimpleClassConfig {
             }
         }
         return options;
+    }
+
+    /**
+     * @return All fields of the config. This will be handled differently if the config is a Kotlin class.
+     */
+    protected Field[] getFields() {
+        if (isKotlin) {
+            return Arrays.stream(getClass().getDeclaredFields())
+                    .filter(field -> !field.isSynthetic())
+                    .filter(field -> field.canAccess(this))
+                    .toArray(Field[]::new);
+        } else {
+            return getClass().getFields();
+        }
     }
 
     /**
