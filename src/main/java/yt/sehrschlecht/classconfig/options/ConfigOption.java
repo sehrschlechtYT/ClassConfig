@@ -20,8 +20,10 @@ public @interface ConfigOption {
 
     /**
      * @return The type of the config option. Used to verify the type of the value.
+     * @deprecated Redundant parameter. Will be removed in the stable release (1.0)
      */
-    Class<?> type();
+    @Deprecated(forRemoval = true)
+    Class<?> type() default ConfigOption.class; // ConfigOption.class is used as a placeholder and ignored by the config loader.
 
     /**
      * @return An array of comments that will be added to the config file. Comments will be overwritten every time the config file is saved.

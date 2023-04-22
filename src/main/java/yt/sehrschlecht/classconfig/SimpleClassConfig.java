@@ -247,9 +247,11 @@ public abstract class SimpleClassConfig {
      * @param option The config option annotation
      * @return True if the types match, false otherwise
      */
+    @SuppressWarnings("removal") // usage of deprecated method is necessary for backwards compatibility
     protected boolean verifyOption(@NotNull Field field, @NotNull ConfigOption option) {
         Objects.requireNonNull(field, "Field must not be null!");
         Objects.requireNonNull(option, "ConfigOption must not be null!");
+        if (option.type() == ConfigOption.class) return true; // this is the default value, so we don't need to check anything
         if(field.getType().isAssignableFrom(option.type())) {
             return true;
         } else {
