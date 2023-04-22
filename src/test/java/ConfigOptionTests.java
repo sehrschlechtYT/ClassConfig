@@ -27,7 +27,7 @@ public class ConfigOptionTests {
 
         assertEquals("This option was migrated from an old key!", config.exampleMigratedOption);
         assertEquals("This option was migrated from an old key!", config.getDocument().getString("iWasMigrated"));
-        assertEquals(List.of("Line 1", "Line 2", "Line 3", "Line 4"), config.getDocument().getBlock("iHaveMultipleComments").getComments());
+        assertEquals(List.of(" Line 1", " Line 2", " Line 3", " Line 4"), config.getDocument().getBlock("iHaveMultipleComments").getComments());
     }
 
     @Test
