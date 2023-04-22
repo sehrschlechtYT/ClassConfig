@@ -9,9 +9,10 @@ import java.io.File;
  * @author sehrschlechtYT | https://github.com/sehrschlechtYT
  * @since 1.0
  */
+@SuppressWarnings("removal") // using deprecated methods for testing the backwards compatibility
 public class ExampleConfigSimple extends SimpleClassConfig {
 
-    @ConfigOption(type = String.class, comments = "This is a comment!")
+    @ConfigOption(comments = "This is a comment!")
     public String helloWorld = "Hello World!";
 
     @MigrateOption(oldKeys = "exampleMigratedOption")

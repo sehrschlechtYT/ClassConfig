@@ -12,8 +12,9 @@ import java.io.File;
  * @author sehrschlechtYT | https://github.com/sehrschlechtYT
  * @since 1.0
  */
+@SuppressWarnings("removal") // using deprecated methods for testing the backwards compatibility
 public class ExampleConfigSerialization extends SimpleClassConfig {
-    @ConfigOption(type = Customer.class)
+    @ConfigOption
     @SerializedOption
     public Customer customer = new Customer("John Doe", "123 Main Street", 69);
 
