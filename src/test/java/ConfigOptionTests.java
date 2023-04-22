@@ -40,7 +40,7 @@ public class ConfigOptionTests {
         config.initialize();
 
         assertEquals("John Doe", config.customer.getName());
-        assertEquals("123 Main Street", config.customer.getAddress());
+        assertEquals("Address{street='123 Main Street', city='New York City', state='NY'}", config.customer.getAddress().toString());
         assertEquals(69, config.customer.getAge());
 
         /*assertEquals(new serialization.ManyFields(
@@ -155,7 +155,11 @@ public class ConfigOptionTests {
                       garage: true
                       ==: serialization.House
                     customer:
-                      address: 123 Main Street
+                      address:
+                        city: New York City
+                        street: 123 Main Street
+                        state: NY
+                        ==: serialization.Address
                       name: John Doe
                       age: 69
                       ==: serialization.Customer""", fileContent);

@@ -11,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import yt.sehrschlecht.classconfig.options.ConfigOption;
 import yt.sehrschlecht.classconfig.options.MigrateOption;
+import yt.sehrschlecht.classconfig.serialization.DefaultSerializationAdapter;
+import yt.sehrschlecht.classconfig.serialization.annotation.SerializableClass;
 import yt.sehrschlecht.classconfig.serialization.annotation.SerializedOption;
 
 import java.io.File;
@@ -100,8 +102,26 @@ public abstract class SimpleClassConfig {
             if(field.isAnnotationPresent(SerializedOption.class)) {
                 SerializedOption serializedOption = field.getAnnotation(SerializedOption.class);
                 registerSerializationType(field, serializedOption);
+                if (serializedOption.adapter() != DefaultSerializationAdapter.class) return; // custom adapters should be able to handle nested types themselves
+                // register nested types
+                registerSerializers(field.getType());
             }
         });
+    }
+
+    /**
+     * Registers the serializers for the fields of the given class.<br>
+     * Note: This method will only be used if the {@link DefaultSerializationAdapter} is specified for serialization of the option.
+     */
+    @ApiStatus.Internal
+    private <C> void registerSerializers(@NotNull Class<?> clazz) {
+        for (Field field : clazz.getDeclaredFields()) {
+            if (field.getType().isAnnotationPresent(SerializableClass.class)) {
+                TypeAdapter<C> adapter = new DefaultSerializationAdapter<>(field.getType());
+                @SuppressWarnings("unchecked") Class<C> typeClass = (Class<C>) field.getType();
+                StandardSerializer.getDefault().register(typeClass, adapter);
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")

@@ -16,7 +16,7 @@ import java.io.File;
 public class ExampleConfigSerialization extends SimpleClassConfig {
     @ConfigOption
     @SerializedOption
-    public Customer customer = new Customer("John Doe", "123 Main Street", 69);
+    public Customer customer = new Customer("John Doe", new Address("123 Main Street", "New York City", "NY"), 69);
 
     @ConfigOption(type = ManyFields.class)
     @SerializedOption

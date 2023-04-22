@@ -11,10 +11,10 @@ import yt.sehrschlecht.classconfig.serialization.annotation.Serialize;
 public class Customer {
 
     private @Serialize String name;
-    private @Serialize String address;
+    private @Serialize Address address;
     private @Serialize int age;
 
-    public Customer(String name, String address, int age) {
+    public Customer(String name, Address address, int age) {
         this.name = name;
         this.address = address;
         this.age = age;
@@ -29,7 +29,7 @@ public class Customer {
         return name;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
@@ -41,7 +41,7 @@ public class Customer {
         this.name = name;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
