@@ -7,6 +7,9 @@
 [![](https://dcbadge.vercel.app/api/server/crHgFwH2Gt)](https://discord.gg/crHgFwH2Gt)
 ![](https://dcbadge.vercel.app/api/shield/450685365876162573)
 
+> [!WARNING]
+> This repository is currently unmaintained! No support will be offered regarding bugs or feature requests.
+
 ClassConfig allows the representation of yaml configuration files as classes and config options as fields.
 This prevents repeated method calls like `getConfig().get("key")` for accessing config options.
 
